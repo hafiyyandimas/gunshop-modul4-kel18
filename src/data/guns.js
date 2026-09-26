@@ -1,3 +1,7 @@
+import scar17 from '../NewGun/FN_SCAR_17.png'
+import mp5 from '../NewGun/MP5.jpg'
+import remington700 from '../NewGun/Remington_Model_700.jpg'
+
 const GUNS = [
   {
     name: 'Glock 17',
@@ -53,6 +57,34 @@ const GUNS = [
     description:
       'The other pump gun. Twin action bars, a simple safety on the tang, and a price that leaves money for ammunition.',
   },
+  {
+    name: 'FN SCAR 17',
+    type: 'Rifle',
+    caliber: '7.62x51mm',
+    price: 799,
+    image: scar17,
+    description:
+      'modular, gas-operated battle rifle chambered in 7.62x51mm NATO (.308 Winchester)',
+  },
+  {
+    name: 'MP5',
+    type: 'Submachine Gun',
+    caliber: '9x19mm Parabellum submachine gun',
+    price: 1599,
+    image: mp5,
+    description:
+      'Ya gitu',
+  },
+  {
+    name: 'Remington Model 700',
+    type: 'Bolt-Action Rifle',
+    caliber: '.308 Winchester',
+    price: 399,
+    image: remington700,
+    description:
+      'a famous, mass-produced bolt-action rifle (Senjata dari gem phantom force)',
+  },
+  
 ]
 
 export default GUNS

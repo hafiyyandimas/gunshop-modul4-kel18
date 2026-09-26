@@ -1,9 +1,35 @@
+import { useEffect, useState } from 'react'
+
 const NAV = ['Catalog', 'About', 'Contact']
 
 function Header({ tab, onTab }) {
+  const [installPrompt, setInstallPrompt] = useState(null)
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (event) => {
+      event.preventDefault()
+      setInstallPrompt(event)
+    }
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+    }
+  }, [])
+
+  const handleInstall = async () => {
+    if (!installPrompt) return
+
+    installPrompt.prompt()
+    await installPrompt.userChoice
+    setInstallPrompt(null)
+  }
+
   return (
     <header className="header">
       <span className="brand display">Bore &amp; Barrel</span>
+
       <nav className="nav">
         {NAV.map((item) => (
           <button
@@ -15,6 +41,15 @@ function Header({ tab, onTab }) {
             {item}
           </button>
         ))}
+
+        <button
+          type="button"
+          className="install-btn"
+          onClick={handleInstall}
+          disabled={!installPrompt}
+        >
+          Install App
+        </button>
       </nav>
     </header>
   )
